@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ClickLar" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="RelativeLayoutStyle">
+        <item name="android:background">@color/bg</item>
+    </style>
+
+    <style name="Theme.ClickLar" parent="Base.Theme.ClickLar" />
+</resources>
