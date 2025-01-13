@@ -7,19 +7,38 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Helpers.ActivityHelper;
+import com.yuri.clicklar.Helpers.AndroidHelper;
+import com.yuri.clicklar.Helpers.FirebaseHelper;
+import com.yuri.clicklar.Model.Favorito;
+import com.yuri.clicklar.Model.Usuario;
 import com.yuri.clicklar.R;
 
-public class CadastroSegundaPaginaActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
+public class CadastroSegundaPaginaActivity extends AppCompatActivity {
     private AutoCompleteTextView ACTV;
-    private Button btnVoltar;
+    private Button btnVoltar, btnEntrar;
     private String[] opcoes = {"CPF", "CNPJ"};
+    private String email, senha;
+    private FirebaseAuth auth = FirebaseHelper.getAuth();
+    private FirebaseFirestore firestore = FirebaseHelper.getFirestore();
+    private TextInputEditText nomeUsuTextInputEditText, numeroIU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +52,7 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         });
 
         views();
+        pegarDados();
 
         ActivityHelper.iniciarActivity(this);
 
@@ -53,10 +73,101 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastrarBD();
+
+            }
+        });
+    }
+
+    public Usuario criarUsuario(String nome, String numero){
+        Date dataAtual = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String dataFormatada = formatador.format(dataAtual);
+
+        String idUsu = auth.getCurrentUser().getUid();
+
+        Usuario usuario = new Usuario();
+        usuario.setIdUsu(idUsu);
+        usuario.setNome(nome);
+        usuario.setNPE(numero);
+        usuario.setTNPE(ACTV.getText().toString());
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
+        usuario.setAtivo(true);
+        usuario.setPremium(false);
+        usuario.setValido(false);
+        usuario.setDataCriacao(dataFormatada);
+
+        return usuario;
+    }
+
+    public void cadastrarBD(){
+        String nome = nomeUsuTextInputEditText.getText().toString();
+        String numero = numeroIU.getText().toString();
+
+        Usuario usuario = criarUsuario(nome, numero);
+        Favorito favorito = new Favorito();
+        favorito.setIdUsuario(usuario.getIdUsu());
+
+        if(!nome.isEmpty()){
+            if(!numero.isEmpty()){
+                if(ACTV.getText().toString().equals("CPF") || ACTV.getText().toString().equals("CNPJ")){
+                    auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                firestore.collection("usuarios").document(usuario.getIdUsu()).set(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            firestore.collection("Favoritos").document(favorito.getIdUsuario()).set(favorito).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+                                                        ActivityHelper.removerActivity(CadastroSegundaPaginaActivity.this);
+                                                        AndroidHelper.trocarActivity(CadastroSegundaPaginaActivity.this, LoginActivity.class);
+                                                        finish();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                    }
+                                });
+
+
+                            }
+                        }
+                    });
+                }else{
+                    ACTV.setError("Preencha o campo");
+                    ACTV.requestFocus();
+                }
+            }else{
+                numeroIU.setError("Preencha o campo");
+                numeroIU.requestFocus();
+            }
+        }else{
+            nomeUsuTextInputEditText.setError("Preencha o campo");
+            nomeUsuTextInputEditText.requestFocus();
+        }
+    }
+
+    public void pegarDados(){
+        email = getIntent().getStringExtra("email");
+        senha = getIntent().getStringExtra("senha");
     }
 
     public void views(){
         ACTV = findViewById(R.id.ACTV);
         btnVoltar = findViewById(R.id.btnVoltar);
+        btnEntrar = findViewById(R.id.btnEntrar);
+        nomeUsuTextInputEditText = findViewById(R.id.nomeUsuTextInputEditText);
+        numeroIU = findViewById(R.id.numeroIU);
+
     }
 }

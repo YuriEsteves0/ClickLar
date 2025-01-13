@@ -74,7 +74,7 @@
             app:endIconContentDescription="Limpar texto">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailTextInputEditText"
+                android:id="@+id/nomeUsuTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -97,6 +97,7 @@
                 android:inputType="none"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:background="@color/white"
                 android:padding="16dp"
                 app:endIconMode="dropdown_menu"
                 android:layout_marginBottom="20dp"
@@ -144,7 +145,7 @@
                 android:textSize="15sp"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 />
-            <Button
+            <Button android:id="@+id/btnEntrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entrar"

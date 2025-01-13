@@ -1,5 +1,6 @@
 package com.yuri.clicklar.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,7 +55,10 @@ public class CadastroActivity extends AppCompatActivity {
                     if(!senhatextInputEditText.getText().toString().isEmpty()){
                         if(!senha2textInputEditText.getText().toString().isEmpty()){
                             if(senhatextInputEditText.getText().toString().equals(senha2textInputEditText.getText().toString())){
-                                AndroidHelper.trocarActivity(CadastroActivity.this, CadastroSegundaPaginaActivity.class);
+                                Intent intent = new Intent(CadastroActivity.this, CadastroSegundaPaginaActivity.class);
+                                intent.putExtra("email", emailTextInputEditText.getText().toString());
+                                intent.putExtra("senha", senhatextInputEditText.getText().toString());
+                                startActivity(intent);
                             }else{
                                 senha2textInputEditText.setError("As senhas não são iguais!");
                                 senha2textInputEditText.requestFocus();
