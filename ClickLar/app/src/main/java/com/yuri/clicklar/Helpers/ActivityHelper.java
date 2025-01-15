@@ -1,6 +1,7 @@
 package com.yuri.clicklar.Helpers;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class ActivityHelper {
         Log.d("TROCA DE TELA", "---------------------------------------------------");
         adicionarActivity(activity);
         listarActivities();
+        FirebaseHelper.verificarLogin(activity);
         Log.d("TROCA DE TELA", "---------------------------------------------------");
     }
 

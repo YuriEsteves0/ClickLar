@@ -5,6 +5,92 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/RelativeLayoutStyle"
+    android:padding="15dp"
     tools:context=".MainActivity">
 
+    <androidx.core.widget.NestedScrollView android:id="@+id/NSV"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/drawable_rounded_corners"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Pesquisar..."
+            android:backgroundTint="@color/white"
+            android:background="@drawable/drawable_rounded_corners"
+            android:text=""
+            style="@style/TextAppearance.Material3.SearchBar"
+            android:iconifiedByDefault="false"/>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/NSV"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Selecione"
+            android:layout_weight="1"
+            android:layout_marginEnd="2dp"
+            app:boxBackgroundMode = "outline"
+            app:endIconMode="dropdown_menu"
+            app:hintTextColor="@color/cinzaTexto"
+            app:boxStrokeColor="@color/white"
+            app:hintAnimationEnabled="true">
+
+            <AutoCompleteTextView android:id="@+id/selecione1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/drawable_rounded_corners"
+                android:padding="16dp"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeErrorColor="@color/white"
+                android:maxLines="1"
+                android:textColorHint="@color/black"
+                app:endIconMode="dropdown_menu"
+                android:textAppearance="?attr/textAppearanceBodyLarge"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Faixa de Preço"
+            app:boxBackgroundMode="outline"
+            android:layout_weight="1"
+            app:hintTextColor="@color/cinzaTexto"
+            android:layout_marginStart="2dp"
+            app:endIconMode="dropdown_menu"
+            app:boxStrokeColor="@color/white"
+            app:hintAnimationEnabled="true">
+
+            <AutoCompleteTextView android:id="@+id/selecione2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/drawable_rounded_corners"
+                android:padding="16dp"
+                android:maxLines="1"
+                android:textColorHint="@color/black"
+                app:endIconMode="dropdown_menu"
+                android:textAppearance="?attr/textAppearanceBodyLarge"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 </RelativeLayout>

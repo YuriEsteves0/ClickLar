@@ -11,14 +11,14 @@ public class Usuario {
     private String TNPE;
     private boolean ativo;
     private String dataCriacao;
-    private String idFavorito;
     private boolean premium;
     private boolean valido;
+    private String nivelUsuario;
 
     public Usuario() {}
 
     public Usuario(String nome, String email, String senha, String NPE, String TNPE, boolean ativo,
-                   String dataCriacao, String idFavorito, boolean premium, boolean valido, String idUsu) {
+                   String dataCriacao, boolean premium, boolean valido, String idUsu, String nivelUsuario) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -26,10 +26,18 @@ public class Usuario {
         this.TNPE = TNPE;
         this.ativo = ativo;
         this.dataCriacao = dataCriacao;
-        this.idFavorito = idFavorito;
         this.premium = premium;
         this.valido = valido;
         this.idUsu = idUsu;
+        this.nivelUsuario = nivelUsuario;
+    }
+
+    public String getNivelUsuario() {
+        return nivelUsuario;
+    }
+
+    public void setNivelUsuario(String nivelUsuario) {
+        this.nivelUsuario = nivelUsuario;
     }
 
     public String getIdUsu() {
@@ -96,14 +104,6 @@ public class Usuario {
         this.dataCriacao = dataCriacao;
     }
 
-    public String getIdFavorito() {
-        return idFavorito;
-    }
-
-    public void setIdFavorito(String idFavorito) {
-        this.idFavorito = idFavorito;
-    }
-
     public boolean isPremium() {
         return premium;
     }
@@ -130,7 +130,6 @@ public class Usuario {
                 ", TNPE=" + TNPE +
                 ", ativo=" + ativo +
                 ", dataCriacao='" + dataCriacao + '\'' +
-                ", idFavorito='" + idFavorito + '\'' +
                 ", premium=" + premium +
                 ", valido=" + valido +
                 '}';

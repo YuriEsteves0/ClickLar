@@ -83,15 +83,13 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         });
     }
 
-    public Usuario criarUsuario(String nome, String numero){
+    public Usuario criarUsuario(String userId, String nome, String numero) {
         Date dataAtual = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String dataFormatada = formatador.format(dataAtual);
 
-        String idUsu = auth.getCurrentUser().getUid();
-
         Usuario usuario = new Usuario();
-        usuario.setIdUsu(idUsu);
+        usuario.setIdUsu(userId);
         usuario.setNome(nome);
         usuario.setNPE(numero);
         usuario.setTNPE(ACTV.getText().toString());
@@ -101,61 +99,68 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         usuario.setPremium(false);
         usuario.setValido(false);
         usuario.setDataCriacao(dataFormatada);
+        usuario.setNivelUsuario("usu");
 
         return usuario;
     }
 
-    public void cadastrarBD(){
+    private void salvarUsuarioNoFirestore(Usuario usuario) {
+        firestore.collection("Usuarios").document(usuario.getIdUsu())
+                .set(usuario)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            ActivityHelper.removerActivity(CadastroSegundaPaginaActivity.this);
+                            auth.signOut();
+                            AndroidHelper.trocarActivity(CadastroSegundaPaginaActivity.this, LoginActivity.class);
+                            finish();
+                        } else {
+                            AndroidHelper.mostrarMensagem(CadastroSegundaPaginaActivity.this, "Erro ao salvar usuário");
+                        }
+                    }
+                });
+    }
+
+
+
+    public void cadastrarBD() {
         String nome = nomeUsuTextInputEditText.getText().toString();
         String numero = numeroIU.getText().toString();
 
-        Usuario usuario = criarUsuario(nome, numero);
-        Favorito favorito = new Favorito();
-        favorito.setIdUsuario(usuario.getIdUsu());
+        if (!nome.isEmpty()) {
+            if (!numero.isEmpty()) {
+                if (ACTV.getText().toString().equals("CPF") || ACTV.getText().toString().equals("CNPJ")) {
+                    auth.createUserWithEmailAndPassword(email, senha)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        String userId = auth.getCurrentUser().getUid();
 
-        if(!nome.isEmpty()){
-            if(!numero.isEmpty()){
-                if(ACTV.getText().toString().equals("CPF") || ACTV.getText().toString().equals("CNPJ")){
-                    auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                firestore.collection("usuarios").document(usuario.getIdUsu()).set(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            firestore.collection("Favoritos").document(favorito.getIdUsuario()).set(favorito).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        ActivityHelper.removerActivity(CadastroSegundaPaginaActivity.this);
-                                                        AndroidHelper.trocarActivity(CadastroSegundaPaginaActivity.this, LoginActivity.class);
-                                                        finish();
-                                                    }
-                                                }
-                                            });
-                                        }
+                                        Usuario usuario = criarUsuario(userId, nome, numero);
 
+                                        salvarUsuarioNoFirestore(usuario);
+                                    } else {
+                                        // Lidar com erros de criação do usuário
+                                        AndroidHelper.mostrarMensagem(CadastroSegundaPaginaActivity.this, "Erro ao criar usuário");
                                     }
-                                });
-
-
-                            }
-                        }
-                    });
-                }else{
+                                }
+                            });
+                } else {
                     ACTV.setError("Preencha o campo");
                     ACTV.requestFocus();
                 }
-            }else{
+            } else {
                 numeroIU.setError("Preencha o campo");
                 numeroIU.requestFocus();
             }
-        }else{
+        } else {
             nomeUsuTextInputEditText.setError("Preencha o campo");
             nomeUsuTextInputEditText.requestFocus();
         }
     }
+
 
     public void pegarDados(){
         email = getIntent().getStringExtra("email");
