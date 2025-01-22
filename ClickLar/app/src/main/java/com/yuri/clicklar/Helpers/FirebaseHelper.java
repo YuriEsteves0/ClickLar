@@ -20,18 +20,13 @@ public class FirebaseHelper {
         return auth;
     }
 
-    public static FirebaseUser getCurrentUser(){
-        if(auth.getCurrentUser() == null){
-            return null;
-        }else{
-            return auth.getCurrentUser();
-        }
+    public static FirebaseUser getCurrentUser() {
+        return getAuth().getCurrentUser();
     }
-
 
     public static void verificarLogin(Context context) {
         if (!loginVerificado) {
-            auth = getAuth();
+            FirebaseAuth auth1 = getAuth();
             if (auth.getCurrentUser() == null) {
                 AndroidHelper.trocarActivity(context, LoginActivity.class);
                 ActivityHelper.fecharTodasActivities();
@@ -43,13 +38,6 @@ public class FirebaseHelper {
         }
     }
 
-
-
-    public static FirebaseUser getUser(){
-        auth = getAuth();
-        return auth.getCurrentUser();
-    }
-
     public static FirebaseFirestore getFirestore(){
         if(firestore == null){
             firestore = FirebaseFirestore.getInstance();
@@ -57,4 +45,5 @@ public class FirebaseHelper {
         }
         return firestore;
     }
+
 }
