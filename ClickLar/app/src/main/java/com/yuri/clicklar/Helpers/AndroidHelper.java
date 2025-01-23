@@ -10,6 +10,9 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import java.io.ByteArrayOutputStream;
 
 public class AndroidHelper {
@@ -23,15 +26,18 @@ public class AndroidHelper {
     }
 
     public static String encodeImageToBase64(Context context, int drawableRes) {
+
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), drawableRes);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         byte[] byteArray = outputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
+
     }
 
     public static Bitmap decodeBase64ToBitmap(String base64Image) {
         byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
+
 }

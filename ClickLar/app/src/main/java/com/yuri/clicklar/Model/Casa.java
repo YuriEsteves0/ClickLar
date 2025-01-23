@@ -15,11 +15,12 @@ public class Casa {
     private String qntGaragem;
     private String qntBanheiro;
     private String localizacao;
+    private String bairro;
 
     public Casa() {
     }
 
-    public Casa(String id, String fotocasa, String nomeCasa, String statusCasa, String precoCasaAntigo, String precoCasa, String promocao, String qntQuarto, String qntArea, String qntGaragem, String qntBanheiro, String localizacao) {
+    public Casa(String bairro, String id, String fotocasa, String nomeCasa, String statusCasa, String precoCasaAntigo, String precoCasa, String promocao, String qntQuarto, String qntArea, String qntGaragem, String qntBanheiro, String localizacao) {
         this.id=id;
         this.nomeCasa = nomeCasa;
         this.statusCasa = statusCasa;
@@ -32,6 +33,15 @@ public class Casa {
         this.qntBanheiro = qntBanheiro;
         this.localizacao = localizacao;
         this.imagemBase64 = imagemBase64;
+        this.bairro = bairro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getId() {

@@ -25,9 +25,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Obtenha a instância de FirebaseAuth
-//        auth = FirebaseAuth.getInstance();
-//        user = auth.getCurrentUser();
+//         Obtenha a instância de FirebaseAuth
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);

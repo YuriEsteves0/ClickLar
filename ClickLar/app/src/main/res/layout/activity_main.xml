@@ -6,221 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/RelativeLayoutStyle"
-    android:padding="15dp"
     tools:context=".MainActivity">
-    <ScrollView
+
+    <FrameLayout android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.core.widget.NestedScrollView android:id="@+id/NSV"
-                android:layout_width="match_parent"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/drawable_rounded_corners"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:queryHint="Pesquisar..."
-                    android:backgroundTint="@color/white"
-                    android:background="@drawable/drawable_rounded_corners"
-                    android:text=""
-                    style="@style/TextAppearance.Material3.SearchBar"
-                    android:iconifiedByDefault="false"/>
-            </androidx.core.widget.NestedScrollView>
-
-            <LinearLayout
-                android:id="@+id/escolhas"
-                android:layout_width="match_parent"
-                android:layout_below="@id/NSV"
-                android:layout_marginTop="15dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Selecione"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="2dp"
-                    app:boxBackgroundMode = "outline"
-                    app:endIconMode="dropdown_menu"
-                    app:hintTextColor="@color/cinzaTexto"
-                    app:boxStrokeColor="@color/white"
-                    app:hintAnimationEnabled="true">
-
-                    <AutoCompleteTextView android:id="@+id/selecione1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:backgroundTint="@color/white"
-                        android:background="@drawable/drawable_rounded_corners"
-                        android:padding="16dp"
-                        app:boxStrokeColor="@color/white"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeErrorColor="@color/white"
-                        android:maxLines="1"
-                        android:textColorHint="@color/black"
-                        app:endIconMode="dropdown_menu"
-                        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Faixa de Preço"
-                    app:boxBackgroundMode="outline"
-                    android:layout_weight="1"
-                    app:hintTextColor="@color/cinzaTexto"
-                    android:layout_marginStart="2dp"
-                    app:endIconMode="dropdown_menu"
-                    app:boxStrokeColor="@color/white"
-                    app:hintAnimationEnabled="true">
-
-                    <AutoCompleteTextView android:id="@+id/selecione2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:backgroundTint="@color/white"
-                        android:background="@drawable/drawable_rounded_corners"
-                        android:padding="16dp"
-                        android:maxLines="1"
-                        android:textColorHint="@color/black"
-                        app:endIconMode="dropdown_menu"
-                        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <TextView android:id="@+id/txtEscolhaSuaProxViagem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Escolha sua próxima experiência"
-                android:layout_below="@id/escolhas"
-                android:layout_marginTop="15dp"
-                android:textSize="15sp"/>
-
-            <androidx.cardview.widget.CardView android:id="@+id/cardView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_below="@id/txtEscolhaSuaProxViagem">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/casafoda"
-                        android:scaleType="centerCrop"/>
-
-                    <ImageView android:id="@+id/imgAnterior"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/seta"
-                        android:layout_centerVertical="true"
-                        android:rotation="180"
-                        android:layout_marginStart="15dp"/>
-
-                    <ImageView android:id="@+id/imgPosterior"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/seta"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="15dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 3.500 - Minas Gerais"
-                        android:textSize="15sp"
-                        android:padding="5dp"
-                        android:background="@drawable/drawable_rounded_corners"
-                        android:backgroundTint="@color/laranjaPrimario"
-                        android:textColor="@color/white"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"/>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout android:id="@+id/anuncioPremium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/cardView"
-                android:background="@drawable/drawable_rounded_corners"
-                android:backgroundTint="@color/white"
-                android:padding="15dp"
-                android:elevation="15sp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/logoclicklar"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_black"
-                            android:textSize="15sp"
-                            android:text="ClickLar"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:text=" Premium"
-                            android:textColor="@color/laranjaPrimario"
-                            android:fontFamily="@font/inter_black"
-                            />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Seu novo lar a um clique de distância!"
-                        android:textSize="15sp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView android:id="@+id/dispProx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Imóveis na sua proximidade"
-                android:layout_below="@id/anuncioPremium"
-                android:layout_marginTop="15dp"
-                android:textSize="15sp"/>
-
-            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_below="@id/dispProx"/>
-        </RelativeLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:color="@color/cinzaNormal"
+            app:itemTextColor="@color/black"
+            app:menu="@menu/menu_bnv"/>
+    </LinearLayout>
 </RelativeLayout>
 

@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_marginTop="15dp"
     android:background="@color/white">
 
     <androidx.cardview.widget.CardView android:id="@+id/card"
@@ -151,7 +153,7 @@
                         android:text="Rua Coronel Fra... - "
                         android:textSize="15sp"/>
 
-                    <TextView
+                    <TextView android:id="@+id/bairro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nilópolis"

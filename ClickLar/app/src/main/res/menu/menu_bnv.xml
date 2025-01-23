@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/casinha"
+        android:title="Home"/>
+    <item android:id="@+id/feed"
+        android:enabled="true"
+        android:icon="@drawable/category"
+        android:title="Feed"/>
+    <item android:id="@+id/amigos"
+        android:enabled="true"
+        android:icon="@drawable/friends"
+        android:title="Amigos"/>
+    <item android:id="@+id/chat"
+        android:enabled="true"
+        android:icon="@drawable/chat"
+        android:title="Chat"/>
+    <item android:id="@+id/perfil"
+        android:enabled="true"
+        android:icon="@drawable/profile"
+        android:title="Perfil"/>
+
+
+</menu>

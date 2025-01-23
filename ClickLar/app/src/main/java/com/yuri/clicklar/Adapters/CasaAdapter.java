@@ -54,11 +54,18 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
         holder.qntGaragem.setText(casa.getQntGaragem());
         holder.qntBanheiro.setText(casa.getQntBanheiro());
         holder.localizacao.setText(casa.getLocalizacao());
+        holder.bairro.setText(casa.getBairro());
 
         if (casa.getImagemBase64() != null && !casa.getImagemBase64().isEmpty()) {
-            String base64Image = casa.getImagemBase64().get(0);
-            Bitmap bitmap = AndroidHelper.decodeBase64ToBitmap(base64Image);
-            holder.fotocasa.setImageBitmap(bitmap);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String base64Image = casa.getImagemBase64().get(0);
+                    Bitmap bitmap = AndroidHelper.decodeBase64ToBitmap(base64Image);
+
+                    holder.fotocasa.setImageBitmap(bitmap);
+                }
+            }).start();
         }else{
             holder.fotocasa.setImageResource(R.drawable.houseplaceholder);
         }
@@ -96,6 +103,7 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
         private TextView qntGaragem;
         private TextView qntBanheiro;
         private TextView localizacao;
+        private TextView bairro;
         private CardView card;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -114,6 +122,7 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
             qntGaragem = itemView.findViewById(R.id.qntGaragem);
             qntBanheiro = itemView.findViewById(R.id.qntBanheiro);
             localizacao = itemView.findViewById(R.id.localizacao);
+            bairro = itemView.findViewById(R.id.bairro);
         }
     }
 }
