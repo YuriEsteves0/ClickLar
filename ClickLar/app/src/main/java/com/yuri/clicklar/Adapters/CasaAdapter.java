@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Model.Casa;
 import com.yuri.clicklar.R;
@@ -41,12 +42,19 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
 
         holder.nomeCasa.setText(casa.getNomeCasa());
         holder.statusCasa.setText(casa.getStatusCasa());
-        if(casa.getPromocao().equals("0")){
+
+        if (casa.getPromocao().equals("0")) { //NÃO TEM PROMOÇÃO
             holder.promocao.setVisibility(View.GONE);
             holder.precoCasaAntigo.setVisibility(View.GONE);
+            holder.precoCasa.setVisibility(View.VISIBLE);
             holder.precoCasa.setText(casa.getPrecoCasa());
-        }else{
+        } else {
+            holder.promocao.setVisibility(View.VISIBLE);
+            holder.precoCasaAntigo.setVisibility(View.VISIBLE);
+            holder.precoCasa.setVisibility(View.VISIBLE);
+            holder.precoCasaAntigo.setText(casa.getPrecoCasaAntigo());
             holder.precoCasa.setText(casa.getPrecoCasa());
+            holder.promocao.setText(casa.getPromocao());
         }
 
         holder.qntQuarto.setText(casa.getQntQuarto());
@@ -56,19 +64,31 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
         holder.localizacao.setText(casa.getLocalizacao());
         holder.bairro.setText(casa.getBairro());
 
-        if (casa.getImagemBase64() != null && !casa.getImagemBase64().isEmpty()) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String base64Image = casa.getImagemBase64().get(0);
-                    Bitmap bitmap = AndroidHelper.decodeBase64ToBitmap(base64Image);
+        //GARAGEM
+        Glide.with(context).load(R.drawable.garagemicone).placeholder(R.drawable.houseplaceholder).into(holder.garagemIcone);
+        //TAMANHO CASA
+        Glide.with(context).load(R.drawable.tamanhocasaicone).placeholder(R.drawable.houseplaceholder).into(holder.tamanhoCasaIcone);
+        //CAMA
+        Glide.with(context).load(R.drawable.camaicone).placeholder(R.drawable.houseplaceholder).into(holder.camaIcone);
+        //BANHEIRO
+        Glide.with(context).load(R.drawable.banheiroicone).placeholder(R.drawable.houseplaceholder).into(holder.banheiroIcone);
+        //CORACAP
+        Glide.with(context).load(R.drawable.coracao).placeholder(R.drawable.houseplaceholder).into(holder.coracao);
 
-                    holder.fotocasa.setImageBitmap(bitmap);
-                }
-            }).start();
-        }else{
-            holder.fotocasa.setImageResource(R.drawable.houseplaceholder);
+        if (casa.getImagemBase64() != null && !casa.getImagemBase64().isEmpty()) {
+            String base64Image = casa.getImagemBase64().get(0);
+            Bitmap bitmap = AndroidHelper.decodeBase64ToBitmap(base64Image);
+            Glide.with(context)
+                    .asBitmap()
+                    .load(bitmap)
+                    .placeholder(R.drawable.houseplaceholder)
+                    .into(holder.fotocasa);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.houseplaceholder)
+                    .into(holder.fotocasa);
         }
+
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +114,7 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
         private ImageView fotocasa;
         private TextView nomeCasa;
         private TextView statusCasa;
-        private ImageView coracao;
+        private ImageView coracao, garagemIcone, tamanhoCasaIcone, camaIcone, banheiroIcone;
         private TextView precoCasaAntigo;
         private TextView precoCasa;
         private TextView promocao;
@@ -123,6 +143,10 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
             qntBanheiro = itemView.findViewById(R.id.qntBanheiro);
             localizacao = itemView.findViewById(R.id.localizacao);
             bairro = itemView.findViewById(R.id.bairro);
+            garagemIcone = itemView.findViewById(R.id.garagemIcone);
+            tamanhoCasaIcone = itemView.findViewById(R.id.tamanhoCasaIcone);
+            camaIcone = itemView.findViewById(R.id.camaIcone);
+            banheiroIcone = itemView.findViewById(R.id.banheiroIcone);
         }
     }
 }

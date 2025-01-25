@@ -10,9 +10,10 @@
 
     <FrameLayout android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/linearLayoutNV"/>
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/linearLayoutNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">

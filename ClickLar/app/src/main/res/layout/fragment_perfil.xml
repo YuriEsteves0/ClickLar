@@ -3,11 +3,379 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.PerfilFragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Perfil Fragment" />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView android:id="@+id/gradiente"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/gradiente"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/seta"
+                android:rotation="180"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"/>
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/config"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"/>
+
+            <ImageView android:id="@+id/perfilFoto"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/gradiente"
+                android:layout_marginTop="-80dp"
+                android:src="@drawable/perfil"/>
+
+            <TextView android:id="@+id/nomeUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yhureei"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/perfilFoto"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/laranjaPrimario"
+                android:textSize="18sp"/>
+
+            <TextView android:id="@+id/tipoUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Usuário"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/nomeUsuario"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/cinzaTexto"
+                android:textSize="15sp"/>
+
+            <RelativeLayout android:id="@+id/infoUsu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_below="@id/tipoUsuario"
+                android:layout_marginEnd="30dp">
+
+                <TextView android:id="@+id/descricaoPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="top 10 descrições fodas atualizadas 2025 100% sem virus baixe o link na descrição top de linha :D"
+                    android:layout_marginTop="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/cinzaTexto"
+                    android:textSize="15sp"/>
+
+                <LinearLayout android:id="@+id/btns"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/descricaoPerfil"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <Button android:id="@+id/seguirBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
+                        android:text="Seguir"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="30dp"
+                        android:textSize="15sp"/>
+
+                    <Button android:id="@+id/mensagemBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:text="Mensagem"
+                        app:strokeColor="@color/laranjaPrimario"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="30dp"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/stats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btns"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24/12/2024"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/inter_black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Membro desde"
+                            android:textColor="@color/cinzaTexto" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15K"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/inter_black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Seguidores"
+                            android:textColor="@color/cinzaTexto" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="257"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/inter_black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Seguindo"
+                            android:textColor="@color/cinzaTexto" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout android:id="@+id/colecoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/stats"
+                    android:layout_marginTop="30dp">
+                    <RelativeLayout android:id="@+id/vertudo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Coleções"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/inter_black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ver tudo"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:textSize="15sp"/>
+                    </RelativeLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_below="@id/vertudo"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageView android:id="@+id/colecao1"
+                                    android:layout_width="150dp"
+                                    android:layout_height="200dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/houseplaceholder"
+                                    android:scaleType="centerCrop"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Favoritos"
+                                    android:layout_below="@id/colecao1"
+                                    android:textSize="15sp"
+                                    android:layout_marginTop="-30dp"
+                                    android:layout_centerHorizontal="true"
+                                    />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageView android:id="@+id/colecao2"
+                                    android:layout_width="150dp"
+                                    android:layout_height="200dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/houseplaceholder"
+                                    android:scaleType="centerCrop"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Coleção 2"
+                                    android:layout_below="@id/colecao2"
+                                    android:textSize="15sp"
+                                    android:layout_marginTop="-30dp"
+                                    android:layout_centerHorizontal="true"
+                                    />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageView android:id="@+id/colecao3"
+                                    android:layout_width="150dp"
+                                    android:layout_height="200dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/houseplaceholder"
+                                    android:scaleType="centerCrop"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Coleção 3"
+                                    android:layout_below="@id/colecao3"
+                                    android:textSize="15sp"
+                                    android:layout_marginTop="-30dp"
+                                    android:layout_centerHorizontal="true"
+                                    />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/infoUsu"
+                android:paddingStart="15dp"
+                android:paddingBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:paddingEnd="15dp"
+                android:background="@color/laranjaPrimario">
+
+                <TextView android:id="@+id/encontreImo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Encontre Imóveis"
+                    android:fontFamily="@font/inter_black"
+                    android:textSize="18sp"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/alugarTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alugar"
+                    android:textSize="15sp"
+                    android:layout_below="@id/encontreImo"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/ComprarTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comprar"
+                    android:textSize="15sp"
+                    android:layout_below="@id/alugarTxt"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/novosImo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Novos Imóveis"
+                    android:textSize="15sp"
+                    android:layout_below="@id/ComprarTxt"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/querTrabConTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quer Trabalhar Conosco?"
+                    android:fontFamily="@font/inter_black"
+                    android:textSize="18sp"
+                    android:layout_below="@id/novosImo"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/anunciarImoProp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anunciar imóveis como proprietário"
+                    android:textSize="15sp"
+                    android:layout_below="@id/querTrabConTxt"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/anunciarImoCorr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anunciar imóveis como corretora"
+                    android:textSize="15sp"
+                    android:layout_below="@id/anunciarImoProp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+
+                <TextView android:id="@+id/faleConosco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fale Conosco"
+                    android:textSize="15sp"
+                    android:layout_below="@id/anunciarImoCorr"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 </FrameLayout>

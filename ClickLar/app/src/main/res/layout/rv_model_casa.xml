@@ -88,7 +88,7 @@
                     android:layout_below="@id/precoCasa"
                     android:gravity="center_vertical"
                     android:layout_marginTop="10dp">
-                    <ImageView
+                    <ImageView android:id="@+id/camaIcone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/camaicone"/>
@@ -99,7 +99,7 @@
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"/>
 
-                    <ImageView
+                    <ImageView android:id="@+id/tamanhoCasaIcone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="10dp"
@@ -111,7 +111,7 @@
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"/>
 
-                    <ImageView
+                    <ImageView android:id="@+id/garagemIcone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="10dp"
@@ -123,7 +123,7 @@
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"/>
 
-                    <ImageView
+                    <ImageView android:id="@+id/banheiroIcone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="10dp"
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_alignParentBottom="true">
-                    <ImageView
+                    <ImageView android:id="@+id/lugarIcone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginEnd="10dp"
