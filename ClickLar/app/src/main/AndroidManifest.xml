@@ -13,6 +13,10 @@
         android:theme="@style/Theme.ClickLar"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.ChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
             android:name=".Activities.SplashActivity"
             android:exported="true">
             <intent-filter>

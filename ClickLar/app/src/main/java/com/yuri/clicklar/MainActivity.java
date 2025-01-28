@@ -28,6 +28,7 @@ import com.yuri.clicklar.Fragments.ChatFragment;
 import com.yuri.clicklar.Fragments.FeedFragment;
 import com.yuri.clicklar.Fragments.HomeFragment;
 import com.yuri.clicklar.Fragments.PerfilFragment;
+import com.yuri.clicklar.Helpers.ActivityHelper;
 import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Model.Casa;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pegarViews();
-
+        ActivityHelper.iniciarActivity(this);
         configBottomNav();
 
     }

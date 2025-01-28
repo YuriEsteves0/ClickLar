@@ -1,6 +1,7 @@
 package com.yuri.clicklar.Activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -22,12 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Helpers.ActivityHelper;
 import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
-import com.yuri.clicklar.Model.Favorito;
+import com.yuri.clicklar.Model.Colecoes;
 import com.yuri.clicklar.Model.Usuario;
 import com.yuri.clicklar.R;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -92,6 +92,7 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         usuario.setIdUsu(userId);
         usuario.setNome(nome);
         usuario.setNPE(numero);
+        usuario.setDescricaoPerfil("Olá, eu sou um usuário novo!");
         usuario.setTNPE(ACTV.getText().toString());
         usuario.setEmail(email);
         usuario.setSenha(senha);
@@ -99,7 +100,7 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         usuario.setPremium(false);
         usuario.setValido(false);
         usuario.setDataCriacao(dataFormatada);
-        usuario.setNivelUsuario("usu");
+        usuario.setNivelUsuario("Usuario");
 
         return usuario;
     }
@@ -111,10 +112,12 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            criarFavoritos(usuario.getIdUsu());
                             ActivityHelper.removerActivity(CadastroSegundaPaginaActivity.this);
                             auth.signOut();
                             AndroidHelper.trocarActivity(CadastroSegundaPaginaActivity.this, LoginActivity.class);
                             finish();
+
                         } else {
                             AndroidHelper.mostrarMensagem(CadastroSegundaPaginaActivity.this, "Erro ao salvar usuário");
                         }
@@ -122,7 +125,27 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
                 });
     }
 
+    public void criarFavoritos(String uid){
 
+        Colecoes colecoes = new Colecoes();
+        colecoes.setIdUsuario(uid);
+        colecoes.setUidCasa("0000");
+
+        firestore.collection("Usuarios").document(uid).collection("Colecoes").document("Favoritos").set(colecoes).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.d("FAVORITOS", "onComplete: ----------------------------------");
+                    Log.d("FAVORITOS", "onComplete: FAVORITOS CRIADO COM SUCESSO!");
+                    Log.d("FAVORITOS", "onComplete: ----------------------------------");
+                }else{
+                    Log.e("FAVORITOS", "onComplete: ----------------------------------");
+                    Log.e("FAVORITOS", "onComplete: FAVORITOS NÃO PÔDE SER CRIADO!");
+                    Log.e("FAVORITOS", "onComplete: ----------------------------------");
+                }
+            }
+        });
+    }
 
     public void cadastrarBD() {
         String nome = nomeUsuTextInputEditText.getText().toString();

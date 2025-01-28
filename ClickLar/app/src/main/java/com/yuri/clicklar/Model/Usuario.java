@@ -5,6 +5,7 @@ import java.util.List;
 public class Usuario {
     private String idUsu;
     private String nome;
+    private String descricaoPerfil;
     private String email;
     private String senha;
     private String NPE;
@@ -30,6 +31,14 @@ public class Usuario {
         this.valido = valido;
         this.idUsu = idUsu;
         this.nivelUsuario = nivelUsuario;
+    }
+
+    public String getDescricaoPerfil() {
+        return descricaoPerfil;
+    }
+
+    public void setDescricaoPerfil(String descricaoPerfil) {
+        this.descricaoPerfil = descricaoPerfil;
     }
 
     public String getNivelUsuario() {

@@ -5,11 +5,14 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Activities.LoginActivity;
 
 public class FirebaseHelper {
     public static FirebaseAuth auth;
+    public static DatabaseReference reference;
     public static FirebaseFirestore firestore;
     private static boolean loginVerificado = false;
 
@@ -18,6 +21,14 @@ public class FirebaseHelper {
             auth = FirebaseAuth.getInstance();
         }
         return auth;
+    }
+
+    public static DatabaseReference getReference(){
+        if(reference == null){
+            reference = FirebaseDatabase.getInstance().getReference();
+            return reference;
+        }
+        return reference;
     }
 
     public static FirebaseUser getCurrentUser() {

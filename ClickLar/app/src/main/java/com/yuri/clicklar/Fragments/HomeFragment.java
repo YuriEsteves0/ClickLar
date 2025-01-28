@@ -97,6 +97,7 @@ public class HomeFragment extends Fragment {
                 casa.setQntBanheiro("2");
                 casa.setLocalizacao("Rua Cor... - ");
                 casa.setBairro("Nilopolis");
+                casa.setUidDono("PWSBrwIkaNRjQ9UKFFXIilogoId2");
 
                 Casa casa2 = new Casa();
                 casa2.setNomeCasa("Casa T1... - ");
@@ -111,6 +112,8 @@ public class HomeFragment extends Fragment {
                 casa2.setQntBanheiro("1");
                 casa2.setBairro("Belford Roxo");
 
+                casa2.setUidDono("7aJRJNJAmOhysHMGjyOuT15mGBy1");
+
                 Casa casa3 = new Casa();
                 casa3.setNomeCasa("Casa T3... - ");
                 casa3.setStatusCasa("Venda");
@@ -123,6 +126,7 @@ public class HomeFragment extends Fragment {
                 casa3.setQntBanheiro("2");
                 casa3.setLocalizacao("Rua Cor... - ");
                 casa3.setBairro("Nilopolis");
+                casa3.setUidDono("7aJRJNJAmOhysHMGjyOuT15mGBy1");
 
                 Casa casa4 = new Casa();
                 casa4.setNomeCasa("Casa T1... - ");
@@ -136,6 +140,7 @@ public class HomeFragment extends Fragment {
                 casa4.setLocalizacao("Barro V... - ");
                 casa4.setQntBanheiro("1");
                 casa4.setBairro("Belford Roxo");
+                casa4.setUidDono("7aJRJNJAmOhysHMGjyOuT15mGBy1");
 
                 casaList.clear();
                 casaList.add(casa);
@@ -170,7 +175,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-                CasaAdapter adapter = new CasaAdapter(casaList, requireContext());
+                CasaAdapter adapter = new CasaAdapter(casaList, getContext(), getParentFragmentManager());
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 

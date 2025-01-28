@@ -1,7 +1,10 @@
 package com.yuri.clicklar.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +13,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.yuri.clicklar.Fragments.PerfilOutroUsuarioFragment;
 import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Model.Casa;
 import com.yuri.clicklar.R;
@@ -23,10 +29,12 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
 
     private List<Casa> casaList;
     private Context context;
+    private FragmentManager fragmentManager;
 
-    public CasaAdapter(List<Casa> casaList, Context context) {
+    public CasaAdapter(List<Casa> casaList, Context context, FragmentManager fragmentManager) {
         this.casaList = casaList;
         this.context = context;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -93,7 +101,14 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AndroidHelper.mostrarMensagem(context, "Clicou no Card");
+                Bundle bundle = new Bundle();
+                bundle.putString("uidDono", casa.getUidDono());
+                Log.d("TAG", "DONO CASA: " + casa.getUidDono());
+                Fragment perfilUsu = new PerfilOutroUsuarioFragment();
+                perfilUsu.setArguments(bundle);
+
+                fragmentManager.beginTransaction().replace(R.id.frameLayout, perfilUsu).addToBackStack(null).commit();
+
             }
         });
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Casa {
     private String id;
+    private String uidDono;
     private List<String> imagemBase64;
     private String nomeCasa;
     private String statusCasa;
@@ -34,6 +35,14 @@ public class Casa {
         this.localizacao = localizacao;
         this.imagemBase64 = imagemBase64;
         this.bairro = bairro;
+    }
+
+    public String getUidDono() {
+        return uidDono;
+    }
+
+    public void setUidDono(String uidDono) {
+        this.uidDono = uidDono;
     }
 
     public String getBairro() {
