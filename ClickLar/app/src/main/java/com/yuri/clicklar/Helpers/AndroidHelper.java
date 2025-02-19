@@ -7,21 +7,41 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.telecom.Call;
 import android.util.Base64;
+import android.util.Log;
+import android.view.PixelCopy;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.request.Request;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AndroidHelper {
+    private static final String BASE_URL = "https://www.yuriesteves.x-br.com/";
+    private static Retrofit retrofit;
+
     public static void trocarActivity(Context context, Class <?> intentFinal){
         Intent intent = new Intent(context, intentFinal);
         context.startActivity(intent);
