@@ -23,8 +23,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
 import com.yuri.clicklar.Helpers.UploadHelper;
+import com.yuri.clicklar.Interfaces.APIService;
+import com.yuri.clicklar.Model.GetImageResponse;
 import com.yuri.clicklar.Model.Usuario;
 import com.yuri.clicklar.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PerfilFragment extends Fragment {
 
@@ -45,7 +53,6 @@ public class PerfilFragment extends Fragment {
         pegarDadosUsu();
 
         perfilFoto.setOnClickListener(v -> abrirGaleria());
-
 
         return view;
     }
@@ -75,8 +82,6 @@ public class PerfilFragment extends Fragment {
         tipoUsuario.setText(usuario.getNivelUsuario());
         descricaoPerfil.setText(usuario.getDescricaoPerfil());
         dataCriacao.setText(usuario.getDataCriacao());
-
-        Glide.with(getContext()).load(R.drawable.perfil).transform(new CenterCrop()).into(perfilFoto);
     }
 
     public void pegarDadosUsu() {
@@ -88,6 +93,48 @@ public class PerfilFragment extends Fragment {
                     }
                 })
                 .addOnFailureListener(e -> Log.e("Firestore", "Erro ao acessar Firestore", e));
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.yuriesteves.x-br.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        APIService apiService = retrofit.create(APIService.class);
+
+        Call<GetImageResponse> call = apiService.getImage(user.getUid());
+
+        call.enqueue(new Callback<GetImageResponse>() {
+            @Override
+            public void onResponse(Call<GetImageResponse> call, Response<GetImageResponse> response) {
+                if (response.isSuccessful()) {
+                    GetImageResponse imageResponse = response.body();
+                    Log.d(TAG, "RESPONSE " + response.toString());
+
+                    Log.d(TAG,  "Usuario: " + user.getUid() + "Status: " + imageResponse.getSuccess() + " Mensagem: " + imageResponse.getMessage() + " Imagens: " + imageResponse.getImages());
+
+                    if (imageResponse != null && "true".equals(imageResponse.getSuccess()) && imageResponse.getImages() != null && !imageResponse.getImages().isEmpty()) {
+                        String imagemUrl = imageResponse.getImages().get(0).getImage_url();
+
+                        Log.d(TAG, "Usuario com foto de perfil! " + imageResponse.getMessage() + " IMAGENS: " + imageResponse.getImages() + " URL: " + imagemUrl);
+
+                        Glide.with(getContext()).load(imagemUrl).transform(new CenterCrop()).into(perfilFoto);
+                    } else {
+                        Log.d(TAG, "Usuario sem foto de perfil! " + (imageResponse != null ? imageResponse.getMessage() : "Resposta nula"));
+
+                        Glide.with(getContext()).load(R.drawable.perfil).transform(new CenterCrop()).into(perfilFoto);
+                    }
+                } else {
+                    Log.d(TAG, "Resposta da API não foi bem-sucedida.");
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<GetImageResponse> call, Throwable t) {
+                Log.d(TAG, "NÃO FOI POSSÍVEL RETORNAR A IMAGEM " + t.getMessage());
+            }
+        });
+
     }
 
     public void pegarViews(View view) {

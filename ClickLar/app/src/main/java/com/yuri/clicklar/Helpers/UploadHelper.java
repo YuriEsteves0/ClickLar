@@ -32,7 +32,6 @@ public class UploadHelper {
 
         Gson gson = new GsonBuilder().setLenient().create();
 
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.yuriesteves.x-br.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
