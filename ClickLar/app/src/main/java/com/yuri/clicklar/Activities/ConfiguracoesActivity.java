@@ -15,12 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.yuri.clicklar.Helpers.ActivityHelper;
+import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
 import com.yuri.clicklar.R;
 
 public class ConfiguracoesActivity extends AppCompatActivity {
 
-    private TextView logout, configPerfil, faleConosco;
+    private TextView logout, configPerfil, faleConosco, dashboard;
     private FirebaseAuth auth = FirebaseHelper.getAuth();
     private ImageView voltarBTN;
 
@@ -81,6 +82,14 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             finish();
         });
 
+        faleConosco.setOnClickListener(v -> {
+
+        });
+
+        dashboard.setOnClickListener(v -> {
+            AndroidHelper.trocarActivity(this, DashboardActivity.class);
+        });
+
     }
 
     public void pegarViews(){
@@ -88,6 +97,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         configPerfil = findViewById(R.id.configPerfil);
         faleConosco = findViewById(R.id.faleConosco);
         voltarBTN = findViewById(R.id.voltarBTN);
+        dashboard = findViewById(R.id.dashboard);
 
     }
 }

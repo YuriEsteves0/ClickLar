@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home"
+        android:title="home"
+        android:icon="@drawable/casinha"/>
+    <item android:id="@+id/perfil"
+        android:title="perfil"
+        android:icon="@drawable/profile"/>
+    <item android:id="@+id/imoveis"
+        android:icon="@drawable/imovel"
+        android:title="imoveis"/>
+    <item android:id="@+id/vendas"
+        android:icon="@drawable/cart"
+        android:title="vendas"/>
+    <item android:id="@+id/notificacoes"
+        android:icon="@drawable/notification"
+        android:title="notificacoes"/>
+</menu>
