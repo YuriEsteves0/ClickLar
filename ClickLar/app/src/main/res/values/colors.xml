@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bg">#FAF9F6</color>
     <color name="laranjaPrimario">#E2A025</color>
+    <color name="vermelhoPrimario">#F44336</color>
     <color name="verdePrimario">#2DA41D</color>
     <color name="cinzaTexto">#6F6F6F</color>
     <color name="cinzaNormal">#D9D9D9</color>

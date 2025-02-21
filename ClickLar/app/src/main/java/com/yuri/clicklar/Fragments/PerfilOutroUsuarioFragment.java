@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +28,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Activities.ChatActivity;
 import com.yuri.clicklar.Helpers.ActivityHelper;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
+import com.yuri.clicklar.Interfaces.APIService;
+import com.yuri.clicklar.Model.GetImageResponse;
 import com.yuri.clicklar.Model.Seguidores;
 import com.yuri.clicklar.Model.Usuario;
 import com.yuri.clicklar.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PerfilOutroUsuarioFragment extends Fragment {
 
@@ -39,6 +48,7 @@ public class PerfilOutroUsuarioFragment extends Fragment {
     private ImageView perfilFoto, voltarBtn, report;
     private FirebaseFirestore firestore = FirebaseHelper.getFirestore();
     private boolean seguindo = false;
+    private String TAG = "PERFIL OUTRO USUARIO";
     private String uidUsu;
     private HomeFragment home = new HomeFragment();
 
@@ -85,8 +95,52 @@ public class PerfilOutroUsuarioFragment extends Fragment {
                         Usuario usuario = documentSnapshot.toObject(Usuario.class);
                         setarDadosUsuario(usuario);
                         botoes(usuario);
+                        pegarFoto(uidUsu);
                     }
                 }
+            }
+        });
+    }
+
+    public void pegarFoto(String uidUsu){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.yuriesteves.x-br.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        APIService apiService = retrofit.create(APIService.class);
+
+        Call<GetImageResponse> call = apiService.getImage(uidUsu);
+
+        call.enqueue(new Callback<GetImageResponse>() {
+            @Override
+            public void onResponse(Call<GetImageResponse> call, Response<GetImageResponse> response) {
+                if(response.isSuccessful()){
+                    GetImageResponse imageResponse = response.body();
+
+                    if(imageResponse != null && !imageResponse.getImages().isEmpty()){
+                        String imagemUrl = imageResponse.getImages().get(0).getImage_url();
+
+                        String imagemUrlComTimestamp = imagemUrl + "?t=" + System.currentTimeMillis();
+
+                        Glide.with(getContext())
+                                .load(imagemUrlComTimestamp)
+                                .transform(new CenterCrop())
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(perfilFoto);
+
+                    }else{
+                        Log.e(TAG, "ERRO AO RECEBER IMAGEM" );
+                    }
+                }else{
+                    Glide.with(getContext()).load(R.drawable.perfil).transform(new CenterCrop()).into(perfilFoto);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetImageResponse> call, Throwable t) {
+
             }
         });
     }

@@ -17,10 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.yuri.clicklar.Activities.ConfiguracoesActivity;
+import com.yuri.clicklar.Helpers.ActivityHelper;
+import com.yuri.clicklar.Helpers.AndroidHelper;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
 import com.yuri.clicklar.Helpers.UploadHelper;
 import com.yuri.clicklar.Interfaces.APIService;
@@ -40,7 +44,7 @@ public class PerfilFragment extends Fragment {
     private String TAG = "PERFIL FRAGMENT";
     private FirebaseUser user = auth.getCurrentUser();
     private FirebaseFirestore firestore = FirebaseHelper.getFirestore();
-    private ImageView perfilFoto;
+    private ImageView perfilFoto, config;
     private TextView nomeUsuario, tipoUsuario, descricaoPerfil, dataCriacao;
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -54,7 +58,15 @@ public class PerfilFragment extends Fragment {
 
         perfilFoto.setOnClickListener(v -> abrirGaleria());
 
+        config.setOnClickListener(v -> AndroidHelper.trocarActivity(getContext(), ConfiguracoesActivity.class));
+
         return view;
+    }
+
+    public void logout(){
+        auth.signOut();
+        ActivityHelper.fecharTodasActivities();
+        getActivity().finish();
     }
 
     public void abrirGaleria(){
@@ -70,10 +82,10 @@ public class PerfilFragment extends Fragment {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri imagemSelecionada = data.getData();
             Log.d(TAG, "URI DA IMAGEM: " + imagemSelecionada);
-            Glide.with(getContext()).load(imagemSelecionada).transform(new CenterCrop()).into(perfilFoto);
 
             UploadHelper uploadHelper = new UploadHelper();
             uploadHelper.uploadImage(getContext(), imagemSelecionada, user.getUid(), "imgperfil");
+            pegarFotoUsuario();
         }
     }
 
@@ -84,16 +96,7 @@ public class PerfilFragment extends Fragment {
         dataCriacao.setText(usuario.getDataCriacao());
     }
 
-    public void pegarDadosUsu() {
-        firestore.collection("Usuarios").document(user.getUid()).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Usuario usuario = documentSnapshot.toObject(Usuario.class);
-                        setarDadosUsu(usuario);
-                    }
-                })
-                .addOnFailureListener(e -> Log.e("Firestore", "Erro ao acessar Firestore", e));
-
+    public void pegarFotoUsuario(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.yuriesteves.x-br.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -117,7 +120,15 @@ public class PerfilFragment extends Fragment {
 
                         Log.d(TAG, "Usuario com foto de perfil! " + imageResponse.getMessage() + " IMAGENS: " + imageResponse.getImages() + " URL: " + imagemUrl);
 
-                        Glide.with(getContext()).load(imagemUrl).transform(new CenterCrop()).into(perfilFoto);
+                        String imagemUrlComTimestamp = imagemUrl + "?t=" + System.currentTimeMillis();
+
+                        Glide.with(getContext())
+                                .load(imagemUrlComTimestamp)
+                                .transform(new CenterCrop())
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(perfilFoto);
+
                     } else {
                         Log.d(TAG, "Usuario sem foto de perfil! " + (imageResponse != null ? imageResponse.getMessage() : "Resposta nula"));
 
@@ -134,6 +145,20 @@ public class PerfilFragment extends Fragment {
                 Log.d(TAG, "NÃO FOI POSSÍVEL RETORNAR A IMAGEM " + t.getMessage());
             }
         });
+    }
+
+    public void pegarDadosUsu() {
+        firestore.collection("Usuarios").document(user.getUid()).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        Usuario usuario = documentSnapshot.toObject(Usuario.class);
+                        setarDadosUsu(usuario);
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("Firestore", "Erro ao acessar Firestore", e));
+
+        pegarFotoUsuario();
+
 
     }
 
@@ -141,6 +166,7 @@ public class PerfilFragment extends Fragment {
         perfilFoto = view.findViewById(R.id.perfilFoto);
         nomeUsuario = view.findViewById(R.id.nomeUsuario);
         tipoUsuario = view.findViewById(R.id.tipoUsuario);
+        config = view.findViewById(R.id.config);
         descricaoPerfil = view.findViewById(R.id.descricaoPerfil);
         dataCriacao = view.findViewById(R.id.dataCriacao);
     }
