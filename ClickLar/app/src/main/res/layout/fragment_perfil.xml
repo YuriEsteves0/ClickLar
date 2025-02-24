@@ -132,6 +132,7 @@
                             android:layout_height="wrap_content"
                             android:text="24/12/2024"
                             android:textSize="18sp"
+                            android:maxLines="1"
                             android:fontFamily="@font/inter_black" />
 
                         <TextView

@@ -102,7 +102,7 @@
                     <TextView android:id="@+id/qntUsuarios"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="120"
+                        android:text="00"
                         android:fontFamily="@font/inter_black"
                         android:textSize="30sp"
                         android:layout_below="@id/bemvindo"
@@ -112,9 +112,19 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <TextView android:id="@+id/msgErroChart"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:textAlignment="center"
+                android:visibility="gone"
+                android:paddingTop="100dp"
+                android:text="Não há dados disponíveis!"
+                android:layout_below="@id/infoUsu"/>
+
             <com.github.mikephil.charting.charts.BarChart android:id="@+id/barChart"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
+                android:visibility="visible"
                 android:layout_below="@id/infoUsu"/>
 
             <LinearLayout
@@ -173,7 +183,7 @@
                                 <TextView android:id="@+id/valorEstatisticaConversa"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="140"
+                                    android:text="XXX"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/inter_black"
                                     android:layout_marginStart="15dp"/>
@@ -232,7 +242,7 @@
                                 <TextView android:id="@+id/valorEstatisticaVendas"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="140"
+                                    android:text="XXX"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/inter_black"
                                     android:layout_marginStart="15dp"/>
@@ -301,7 +311,7 @@
                                 <TextView android:id="@+id/valorEstatisticaFavoritados"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="140"
+                                    android:text="XXX"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/inter_black"
                                     android:layout_marginStart="15dp"/>
@@ -319,7 +329,7 @@
                         </RelativeLayout>
                     </RelativeLayout>
 
-                    <RelativeLayout
+                    <RelativeLayout android:id="@+id/cardSeguidores"
                         android:layout_width="180dp"
                         android:layout_weight="1"
                         android:layout_marginStart="5dp"
@@ -360,20 +370,11 @@
                                 <TextView android:id="@+id/valorEstatisticaSeguidores"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="140"
+                                    android:text="00"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/inter_black"
                                     android:layout_marginStart="15dp"/>
 
-                                <TextView android:id="@+id/valorEstatisticaSeguidoresVariada"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="+32.4%"
-                                    android:textSize="20sp"
-                                    android:layout_centerInParent="true"
-                                    android:layout_alignParentEnd="true"
-                                    android:textColor="@color/white"
-                                    android:layout_marginEnd="15dp"/>
                             </RelativeLayout>
                         </RelativeLayout>
 

@@ -130,8 +130,9 @@
                         <TextView android:id="@+id/dataCriacao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="24/12/2024"
-                            android:textSize="18sp"
+                            android:maxLines="1"
+                            android:text="23/02/2025"
+                            android:textSize="17sp"
                             android:fontFamily="@font/inter_black" />
 
                         <TextView

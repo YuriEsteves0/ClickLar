@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Activities.LoginActivity;
 
@@ -45,14 +46,12 @@ public class FirebaseHelper {
                 visualizacoesMes++;
                 visualizacoesTotais++;
 
-                // Atualiza os campos no documento do usuário
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("visM", visualizacoesMes);
                 updateData.put("visT", visualizacoesTotais);
 
                 userRef.update(updateData);
 
-                // Atualiza a subcoleção do histórico
                 DocumentReference mesRef = userRef.collection("visHistorico").document(mesAtual);
                 mesRef.get().addOnSuccessListener(mesSnapshot -> {
                     int visMes = mesSnapshot.exists() && mesSnapshot.getLong("visualizacoes") != null

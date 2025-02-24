@@ -21,10 +21,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.yuri.clicklar.Activities.ChatActivity;
 import com.yuri.clicklar.Helpers.ActivityHelper;
 import com.yuri.clicklar.Helpers.FirebaseHelper;
@@ -233,7 +235,15 @@ public class PerfilOutroUsuarioFragment extends Fragment {
         tipoUsuario.setText(usuario.getNivelUsuario());
         descricaoPerfil.setText(usuario.getDescricaoPerfil());
         dataCriacao.setText(usuario.getDataCriacao());
-        qntSeguidores.setText("0");
+
+        firestore.collection("Usuarios").document(uidUsu).collection("Seguidores").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int qntRetorno = queryDocumentSnapshots.size();
+                qntSeguidores.setText(String.valueOf(qntRetorno));
+            }
+        });
+
         qntSeguindo.setText("0");
         Glide.with(getContext()).load(R.drawable.perfil).transform(new CenterCrop()).into(perfilFoto);
         verifSeguindo();
