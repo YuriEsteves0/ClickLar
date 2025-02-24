@@ -7,8 +7,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.yuri.clicklar.Activities.LoginActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class FirebaseHelper {
     public static FirebaseAuth auth;
@@ -21,6 +28,44 @@ public class FirebaseHelper {
             auth = FirebaseAuth.getInstance();
         }
         return auth;
+    }
+
+    public static void aumentarVisM(String idUsu){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("Usuarios").document(idUsu);
+
+        // Obtém a data atual no formato YYYY-MM
+        String mesAtual = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(Calendar.getInstance().getTime());
+
+        userRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                int visualizacoesMes = documentSnapshot.getLong("visM") != null ? documentSnapshot.getLong("visM").intValue() : 0;
+                int visualizacoesTotais = documentSnapshot.getLong("visT") != null ? documentSnapshot.getLong("visT").intValue() : 0;
+
+                visualizacoesMes++;
+                visualizacoesTotais++;
+
+                // Atualiza os campos no documento do usuário
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("visM", visualizacoesMes);
+                updateData.put("visT", visualizacoesTotais);
+
+                userRef.update(updateData);
+
+                // Atualiza a subcoleção do histórico
+                DocumentReference mesRef = userRef.collection("visHistorico").document(mesAtual);
+                mesRef.get().addOnSuccessListener(mesSnapshot -> {
+                    int visMes = mesSnapshot.exists() && mesSnapshot.getLong("visualizacoes") != null
+                            ? mesSnapshot.getLong("visualizacoes").intValue()
+                            : 0;
+
+                    Map<String, Object> mesData = new HashMap<>();
+                    mesData.put("visualizacoes", visMes + 1);
+
+                    mesRef.set(mesData);
+                });
+            }
+        });
     }
 
     public static DatabaseReference getReference(){

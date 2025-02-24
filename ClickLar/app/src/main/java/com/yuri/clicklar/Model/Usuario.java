@@ -1,6 +1,14 @@
 package com.yuri.clicklar.Model;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class Usuario {
     private String idUsu;
@@ -14,6 +22,8 @@ public class Usuario {
     private String dataCriacao;
     private boolean premium;
     private boolean valido;
+    private int visM = 0;
+    private int visT = 0;
     private String nivelUsuario;
 
     public Usuario() {}
@@ -33,6 +43,8 @@ public class Usuario {
         this.nivelUsuario = nivelUsuario;
     }
 
+
+
     public String getDescricaoPerfil() {
         return descricaoPerfil;
     }
@@ -47,6 +59,22 @@ public class Usuario {
 
     public void setNivelUsuario(String nivelUsuario) {
         this.nivelUsuario = nivelUsuario;
+    }
+
+    public int getVisM() {
+        return visM;
+    }
+
+    public void setVisM(int visM) {
+        this.visM = visM;
+    }
+
+    public int getVisT() {
+        return visT;
+    }
+
+    public void setVisT(int visT) {
+        this.visT = visT;
     }
 
     public String getIdUsu() {

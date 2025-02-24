@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
                 casa.setQntBanheiro("2");
                 casa.setLocalizacao("Rua Cor... - ");
                 casa.setBairro("Nilopolis");
-                casa.setUidDono("QVmSXxFPayT6bEX73AZ34BJlL2x2");
+                casa.setUidDono("DipmgfeikQbhch6nXGfxxcU0UNq2");
 
                 Casa casa2 = new Casa();
                 casa2.setNomeCasa("Casa T1... - ");

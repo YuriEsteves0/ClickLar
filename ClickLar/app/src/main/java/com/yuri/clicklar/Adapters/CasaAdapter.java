@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yuri.clicklar.Fragments.PerfilOutroUsuarioFragment;
 import com.yuri.clicklar.Helpers.AndroidHelper;
+import com.yuri.clicklar.Helpers.FirebaseHelper;
 import com.yuri.clicklar.Model.Casa;
 import com.yuri.clicklar.R;
 
@@ -107,6 +108,7 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.MyViewHolder>{
                 Fragment perfilUsu = new PerfilOutroUsuarioFragment();
                 perfilUsu.setArguments(bundle);
 
+                FirebaseHelper.aumentarVisM(casa.getUidDono());
                 fragmentManager.beginTransaction().replace(R.id.frameLayout, perfilUsu).addToBackStack(null).commit();
 
             }

@@ -101,6 +101,8 @@ public class CadastroSegundaPaginaActivity extends AppCompatActivity {
         usuario.setValido(false);
         usuario.setDataCriacao(dataFormatada);
         usuario.setNivelUsuario("Usuario");
+        usuario.setVisM(0);
+        usuario.setVisT(0);
 
         return usuario;
     }

@@ -6,6 +6,7 @@
     <color name="laranjaPrimario">#E2A025</color>
     <color name="vermelhoPrimario">#F44336</color>
     <color name="verdePrimario">#2DA41D</color>
+    <color name="azulPrimario">#2196F3</color>
     <color name="cinzaTexto">#6F6F6F</color>
     <color name="cinzaNormal">#D9D9D9</color>
 </resources>

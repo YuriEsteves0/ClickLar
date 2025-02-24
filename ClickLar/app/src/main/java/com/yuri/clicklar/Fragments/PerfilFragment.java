@@ -159,7 +159,6 @@ public class PerfilFragment extends Fragment {
 
         pegarFotoUsuario();
 
-
     }
 
     public void pegarViews(View view) {
