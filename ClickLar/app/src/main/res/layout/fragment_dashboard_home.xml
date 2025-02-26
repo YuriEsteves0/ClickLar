@@ -10,7 +10,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbarXML"
         android:layout_above="@id/BNV">
 
         <RelativeLayout
@@ -18,9 +17,12 @@
             android:layout_height="wrap_content"
             >
 
+            <include layout="@layout/top_menu_back" android:id="@+id/toolbarXML"/>
+
             <RelativeLayout android:id="@+id/infoUsu"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_below="@id/toolbarXML"
                 >
                 <RelativeLayout
                     android:layout_width="wrap_content"

@@ -48,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseHelper.getCurrentUser();
     private String uidUsuRecebedor;
     private TextView textInput, nomeUsu;
-    private ImageView enviar, voltarBTN, reportarBTN;
+    private ImageView enviar, voltarBTN, iconeBtn;
     private List<Mensagens> mensagensList = new ArrayList<>();
     private DatabaseReference reference = FirebaseHelper.getReference();
 
@@ -136,7 +136,7 @@ public class ChatActivity extends AppCompatActivity {
                             finish();
                         });
 
-                        reportarBTN.setOnClickListener(v ->
+                        iconeBtn.setOnClickListener(v ->
                                 AndroidHelper.mostrarMensagem(getApplicationContext(), "Funcionalidade em desenvolvimento!")
                         );
                     }
@@ -217,7 +217,7 @@ public class ChatActivity extends AppCompatActivity {
         enviar = findViewById(R.id.enviar);
         RV = findViewById(R.id.RV);
         voltarBTN = findViewById(R.id.voltarBTN);
-        reportarBTN = findViewById(R.id.reportarBTN);
+        iconeBtn = findViewById(R.id.iconeBtn);
         nomeUsu = findViewById(R.id.nomeUsu);
     }
 }

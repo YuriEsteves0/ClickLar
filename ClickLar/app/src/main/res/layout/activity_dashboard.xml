@@ -8,13 +8,9 @@
     tools:context=".Activities.DashboardActivity"
     style="@style/RelativeLayoutStyle">
 
-
-    <include layout="@layout/top_menu_back" android:id="@+id/toolbarXML"/>
-
     <FrameLayout android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbarXML"
         android:layout_above="@id/BNV"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/BNV"

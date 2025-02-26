@@ -44,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DashboardHomeFragment extends Fragment {
 
-    private ImageView perfil, seta;
+    private ImageView perfil, seta, voltarBTN;
     private RelativeLayout cardSeguidores;
     private static final String TAG = "DashboardHomeFragment";
     private TextView msgErroChart, nomeUsu, porcentagem, qntUsuarios, valorEstatisticaSeguidores, valorEstatisticaSeguidoresVariada, valorEstatisticaVendas, valorEstatisticaVendasVariada, valorEstatisticaConversa, valorEstatisticaConversaVariada, valorEstatisticaFavoritados, valorEstatisticaFavoritadosVariada;
@@ -62,6 +62,10 @@ public class DashboardHomeFragment extends Fragment {
         configChart();
         configDadosUsu();
         configCards();
+
+        voltarBTN.setOnClickListener(v -> {
+            getActivity().finish();
+        });
 
         return view;
     }
@@ -281,7 +285,6 @@ public class DashboardHomeFragment extends Fragment {
         porcentagem = view.findViewById(R.id.porcentagem);
         qntUsuarios = view.findViewById(R.id.qntUsuarios);
         valorEstatisticaSeguidores = view.findViewById(R.id.valorEstatisticaSeguidores);
-        valorEstatisticaSeguidoresVariada = view.findViewById(R.id.valorEstatisticaSeguidoresVariada);
         valorEstatisticaVendas = view.findViewById(R.id.valorEstatisticaVendas);
         valorEstatisticaVendasVariada = view.findViewById(R.id.valorEstatisticaVendasVariada);
         valorEstatisticaConversa = view.findViewById(R.id.valorEstatisticaConversa);
@@ -292,5 +295,6 @@ public class DashboardHomeFragment extends Fragment {
         cardSeguidores = view.findViewById(R.id.cardSeguidores);
         barChart = view.findViewById(R.id.barChart);
         msgErroChart = view.findViewById(R.id.msgErroChart);
+        voltarBTN = view.findViewById(R.id.voltarBTN);
     }
 }

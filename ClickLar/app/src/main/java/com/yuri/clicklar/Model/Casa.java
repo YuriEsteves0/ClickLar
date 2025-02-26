@@ -16,12 +16,13 @@ public class Casa {
     private String qntGaragem;
     private String qntBanheiro;
     private String localizacao;
+    private String valorCondominio;
     private String bairro;
 
     public Casa() {
     }
 
-    public Casa(String bairro, String id, String fotocasa, String nomeCasa, String statusCasa, String precoCasaAntigo, String precoCasa, String promocao, String qntQuarto, String qntArea, String qntGaragem, String qntBanheiro, String localizacao) {
+    public Casa(String bairro, String id, String fotocasa, String nomeCasa, String statusCasa, String precoCasaAntigo, String precoCasa, String promocao, String qntQuarto, String qntArea, String qntGaragem, String qntBanheiro, String localizacao, String valorCondominio) {
         this.id=id;
         this.nomeCasa = nomeCasa;
         this.statusCasa = statusCasa;
@@ -35,6 +36,7 @@ public class Casa {
         this.localizacao = localizacao;
         this.imagemBase64 = imagemBase64;
         this.bairro = bairro;
+        this.valorCondominio = valorCondominio;
     }
 
     public String getUidDono() {
@@ -143,6 +145,14 @@ public class Casa {
 
     public String getLocalizacao() {
         return localizacao;
+    }
+
+    public String getValorCondominio() {
+        return valorCondominio;
+    }
+
+    public void setValorCondominio(String valorCondominio) {
+        this.valorCondominio = valorCondominio;
     }
 
     public void setLocalizacao(String localizacao) {

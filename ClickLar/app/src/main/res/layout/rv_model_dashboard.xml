@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView android:id="@+id/fotoCasa"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/top_corner_radius"
+                android:scaleType="centerCrop"
+                android:src="@drawable/houseplaceholder" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <TextView android:id="@+id/nomeCasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casa t3 em Nilopolis"
+                    android:textSize="16sp"
+                    android:textColor="@color/cinzaTexto"/>
+
+                <TextView android:id="@+id/statusCasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Venda"
+                    android:fontFamily="@font/inter_black"
+                    android:textSize="16sp"
+                    android:layout_alignParentEnd="true"/>
+
+                <TextView android:id="@+id/precoCasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 499.000"
+                    android:fontFamily="@font/inter_black"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/nomeCasa"/>
+
+                <LinearLayout android:id="@+id/icones"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/precoCasa"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView android:id="@+id/iconeCama"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/camaicone"
+                            android:layout_marginTop="15dp"/>
+
+                        <TextView android:id="@+id/qntQrts"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/iconeCama"
+                            android:text="3"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp">
+                        <ImageView android:id="@+id/iconeM2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/tamanhocasaicone"
+                            android:layout_marginTop="15dp"/>
+
+                        <TextView android:id="@+id/qntM2"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/iconeM2"
+                            android:text="345 m²"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp">
+                        <ImageView android:id="@+id/iconeGaragem"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/garagemicone"
+                            android:layout_marginTop="15dp"/>
+
+                        <TextView android:id="@+id/qntGaragem"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/iconeGaragem"
+                            android:text="1"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp">
+                        <ImageView android:id="@+id/iconeBanheiro"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/banheiroicone"
+                            android:layout_marginTop="15dp"/>
+
+                        <TextView android:id="@+id/qntBanheiro"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/iconeBanheiro"
+                            android:text="1"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout android:id="@+id/valorCondominioEncl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/icones">
+                    <ImageView android:id="@+id/iconeCondominio"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/predios"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView android:id="@+id/valorCondominio"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@id/iconeCondominio"
+                        android:text="R$ 300,00"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/valorCondominioEncl">
+                    <Button android:id="@+id/excluir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialButtonOutlinedStyle"
+                        app:strokeColor="@color/laranjaPrimario"
+                        app:strokeWidth="1dp"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="5dp"
+                        android:maxLines="1"
+                        android:text="Excluir"/>
+
+                    <Button android:id="@+id/editar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:strokeColor="@color/laranjaPrimario"
+                        app:strokeWidth="1dp"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Editar"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

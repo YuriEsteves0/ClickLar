@@ -43,7 +43,6 @@ import java.util.ArrayList;
 public class DashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth auth = FirebaseHelper.getAuth();
-    private ImageView voltarBTN;
     private DashboardHomeFragment home = new DashboardHomeFragment();
     private DashboardPerfilFragment perfil = new DashboardPerfilFragment();
     private DashboardNotificacoesFragment notificacoes = new DashboardNotificacoesFragment();
@@ -67,10 +66,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         configBNV();
 
-        voltarBTN.setOnClickListener(v -> {
-            ActivityHelper.removerActivity(this);
-            finish();
-        });
     }
 
     public void carregarFragment(Fragment fragment){
@@ -104,8 +99,6 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void pegarViews(){
-        voltarBTN = findViewById(R.id.voltarBTN);
         BNV = findViewById(R.id.BNV);
-
     }
 }

@@ -111,6 +111,7 @@ public class HomeFragment extends Fragment {
                 casa2.setLocalizacao("Barro V... - ");
                 casa2.setQntBanheiro("1");
                 casa2.setBairro("Belford Roxo");
+                casa2.setUidDono("DipmgfeikQbhch6nXGfxxcU0UNq2");
 
                 casa2.setUidDono("7aJRJNJAmOhysHMGjyOuT15mGBy1");
 
@@ -183,7 +184,6 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
-                        Log.d("TAG", "run: passou aqui");
                     }
                 });
             }
@@ -203,7 +203,7 @@ public class HomeFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             searchEditText.setAutofillHints(View.AUTOFILL_HINT_POSTAL_ADDRESS);
         }
-        searchEditText.setHint("Digite o nome da rua, bairro, estado");
+        searchEditText.setHint("Procure pelo nome do seu imóvel");
         searchEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
 
         searchIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.black));
