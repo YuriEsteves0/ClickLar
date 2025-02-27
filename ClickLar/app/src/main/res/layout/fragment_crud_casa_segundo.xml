@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CrudCasaSegundoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/precoEncl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"
+            android:hint="Preço"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/preco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:textSize="16sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout android:id="@+id/checkboxEncl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center_vertical"
+            android:layout_below="@id/precoEncl">
+
+            <CheckBox android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Condominio"
+                android:drawableTint="@color/white"
+                android:visibility="visible"
+                android:textSize="16sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/condominioEncl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:layout_marginEnd="15dp"
+                android:hint="Valor Condominio"
+                app:startIconDrawable="@drawable/ic_condominio">
+
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/condominio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/inputs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/checkboxEncl">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/banheiroEncl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Qnt"
+                    app:startIconDrawable="@drawable/ic_banheiro">
+
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/banheiro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/areaEncl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Qnt"
+                    app:startIconDrawable="@drawable/ic_tamanho_casa">
+
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:maxLines="1"
+                        android:inputType="numberSigned"
+                        android:textSize="16sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/quartoEncl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Qnt"
+                    app:startIconDrawable="@drawable/ic_bed">
+
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/quarto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/garagemEncl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Qnt"
+                    app:startIconDrawable="@drawable/ic_garagem">
+
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/garagem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:maxLines="1"
+                        android:inputType="numberSigned"
+                        android:textSize="16sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputs"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView android:id="@+id/fotosDiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FOTO CAPA"
+            android:textSize="16sp"
+            android:layout_marginStart="15dp"
+            android:layout_below="@id/divider"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.cardview.widget.CardView android:id="@+id/fotoCapa"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/fotosDiv"
+            app:cardCornerRadius="5dp">
+
+            <ImageView android:id="@+id/fotoPrincipal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/houseplaceholder"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fotoCapa"
+            android:layout_marginTop="15dp">
+            <androidx.cardview.widget.CardView android:id="@+id/fotoSec1Encl"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                app:cardElevation="5dp"
+                android:layout_below="@id/fotosDiv"
+                app:cardCornerRadius="5dp">
+
+                <ImageView android:id="@+id/fotoSec1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/houseplaceholder"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/fotoSec2Encl"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                app:cardElevation="5dp"
+                android:layout_below="@id/fotosDiv"
+                app:cardCornerRadius="5dp">
+
+                <ImageView android:id="@+id/fotoSec2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/houseplaceholder"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/fotoSec3Encl"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                app:cardElevation="5dp"
+                android:layout_below="@id/fotosDiv"
+                app:cardCornerRadius="5dp">
+
+                <ImageView android:id="@+id/fotoSec3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/houseplaceholder"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

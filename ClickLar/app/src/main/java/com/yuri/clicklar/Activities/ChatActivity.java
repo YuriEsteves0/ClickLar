@@ -147,15 +147,22 @@ public class ChatActivity extends AppCompatActivity {
 
     public void botoes() {
         enviar.setOnClickListener(v -> {
+            mensagensList.clear();
             Log.d("TAG", "botoes: to dentro do botao");
             if (!textInput.getText().toString().isEmpty()) {
                 Log.d("TAG", "botoes: to dentro do if");
 
+
                 String idChat = user.getUid() + "_" + uidUsuRecebedor;
                 String dataAtual = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
                 String horaAtual = new SimpleDateFormat("HH:mm").format(new Date());
+                String mensagem = textInput.getText().toString().trim();
 
-                Mensagens mensagens = new Mensagens(textInput.getText().toString(), FirebaseHelper.getCurrentUser().getUid(), dataAtual, horaAtual);
+                if (!mensagem.isEmpty()) {
+                    mensagem = mensagem.substring(0, 1).toUpperCase() + mensagem.substring(1);
+                }
+
+                Mensagens mensagens = new Mensagens(mensagem, FirebaseHelper.getCurrentUser().getUid(), dataAtual, horaAtual);
 
                 reference.child("Chats").child(idChat).push().setValue(mensagens).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

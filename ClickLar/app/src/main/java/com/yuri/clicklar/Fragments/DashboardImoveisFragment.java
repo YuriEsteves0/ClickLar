@@ -1,5 +1,6 @@
 package com.yuri.clicklar.Fragments;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yuri.clicklar.Activities.CrudCasaActivity;
 import com.yuri.clicklar.Adapters.CasaDashboardAdapter;
 import com.yuri.clicklar.Helpers.ActivityHelper;
 import com.yuri.clicklar.Helpers.AndroidHelper;
@@ -121,7 +123,9 @@ public class DashboardImoveisFragment extends Fragment {
         iconeBtn.setVisibility(View.VISIBLE);
 
         iconeBtn.setOnClickListener(v-> {
-            AndroidHelper.mostrarMensagem(getContext(), "Funcionalidade em desenvolvimento!");
+            Intent intent = new Intent(getContext(), CrudCasaActivity.class);
+            intent.putExtra("action", "add");
+            startActivity(intent);
         });
     }
 
