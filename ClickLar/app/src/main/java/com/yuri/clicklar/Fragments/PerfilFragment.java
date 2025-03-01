@@ -84,7 +84,7 @@ public class PerfilFragment extends Fragment {
             Log.d(TAG, "URI DA IMAGEM: " + imagemSelecionada);
 
             UploadHelper uploadHelper = new UploadHelper();
-            uploadHelper.uploadImage(getContext(), imagemSelecionada, user.getUid(), "imgperfil");
+            uploadHelper.uploadImage(getContext(), imagemSelecionada, user.getUid(), "imgperfil", "fotoPerfil");
             pegarFotoUsuario();
         }
     }

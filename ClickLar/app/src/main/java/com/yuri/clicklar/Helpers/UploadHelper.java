@@ -27,8 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UploadHelper {
     private String TAG = "UPLOAD HELPER";
-    public void uploadImage(Context context, Uri uriImage, String uidUsu, String folderTrg){
-        File file = getFileFromUri(context, uriImage, uidUsu);
+    public void uploadImage(Context context, Uri uriImage, String uidUsu, String folderTrg, String nomeArq_ini){
+        File file = getFileFromUri(context, uriImage, uidUsu, nomeArq_ini);
 
         Gson gson = new GsonBuilder().setLenient().create();
 
@@ -59,12 +59,12 @@ public class UploadHelper {
 
             @Override
             public void onFailure(Call<UploadResponse> call, Throwable t) {
-                    Log.d(TAG, "ERRO AO ENVIAR ARQUIVO: " + t.getMessage());
+                Log.d(TAG, "ERRO AO ENVIAR ARQUIVO: " + t.getMessage());
             }
         });
     }
 
-    public File getFileFromUri(Context context, Uri uriImage, String uidUsu){
+    public File getFileFromUri(Context context, Uri uriImage, String uidUsu, String nomeArq_ini){
         File file = null;
 
         try{
@@ -76,8 +76,13 @@ public class UploadHelper {
                 return null;
             }
 
-            // CRIAÇÃO DO ARQUIVO NO CACHE DO APLICATIVO
-            file = new File(context.getCacheDir(), "ProfPic_usuario_" + uidUsu);
+            if(nomeArq_ini.equals("perfil")){
+                // CRIAÇÃO DO ARQUIVO NO CACHE DO APLICATIVO
+                file = new File(context.getCacheDir(), "ProfPic_usuario_" + uidUsu);
+            }
+            if(nomeArq_ini.startsWith("fotoImovel")) {
+                file = new File(context.getCacheDir(), nomeArq_ini + "_" + uidUsu);
+            }
             OutputStream outputStream = new FileOutputStream(file);
 
             byte[] buffer = new byte[1024];

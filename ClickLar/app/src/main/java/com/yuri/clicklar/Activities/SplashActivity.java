@@ -1,6 +1,8 @@
 package com.yuri.clicklar.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
@@ -43,7 +45,10 @@ public class SplashActivity extends AppCompatActivity {
         if (user == null) {
             AndroidHelper.trocarActivity(SplashActivity.this, LoginActivity.class);
         } else {
-            AndroidHelper.trocarActivity(SplashActivity.this, MainActivity.class);
+            new Handler().postDelayed(() -> {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }, 200);
         }
         ActivityHelper.fecharTodasActivities();
         finish();

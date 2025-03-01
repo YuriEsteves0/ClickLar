@@ -177,6 +177,18 @@
             android:layout_below="@id/divider"
             android:layout_marginTop="15dp"/>
 
+        <TextView android:id="@+id/erroFotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="PREENCHA AS FOTOS"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/vermelhoPrimario"
+            android:layout_below="@id/divider"
+            android:layout_marginTop="15dp"/>
+
         <androidx.cardview.widget.CardView android:id="@+id/fotoCapa"
             android:layout_width="match_parent"
             android:layout_height="120dp"
@@ -212,7 +224,7 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView android:id="@+id/fotoSec1"
-                    android:layout_width="match_parent"
+                    android:layout_width="108dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/houseplaceholder"
                     android:scaleType="centerCrop"/>
@@ -230,7 +242,7 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView android:id="@+id/fotoSec2"
-                    android:layout_width="match_parent"
+                    android:layout_width="108dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/houseplaceholder"
                     android:scaleType="centerCrop"/>
@@ -248,7 +260,7 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView android:id="@+id/fotoSec3"
-                    android:layout_width="match_parent"
+                    android:layout_width="108dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/houseplaceholder"
                     android:scaleType="centerCrop"/>
