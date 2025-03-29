@@ -13,8 +13,10 @@ Mais do que um aplicativo, o **ClickLar** representa uma nova forma de negociar 
 Cada detalhe do desenvolvimento foi projetado para oferecer segurança, rapidez e confiabilidade aos usuários.  
 
 <div align="center">  
-  <img src="https://github.com/YuriEsteves0/ClickLar/blob/main/Imagens/Click.LarHomePage.png" alt="Tela de Login ClickLar">  
+  <img src="https://github.com/YuriEsteves0/ClickLar/blob/main/Imagens/ClickLarHomePage.png" alt="Tela de Login ClickLar">  
+  <br>
   <img src="https://github.com/YuriEsteves0/ClickLar/blob/main/Imagens/ClickLarPaginaImovel.png" alt="Cadastro ClickLar">  
+ <br>
   <img src="https://github.com/YuriEsteves0/ClickLar/blob/main/Imagens/telaLoginClickLar.png" alt="Página Inicial ClickLar">  
 </div>  
 
